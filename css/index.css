@@ -13,9 +13,11 @@
     width: auto;
     height: 25px;
     color: gray;
-    margin-top: 12px;
-    margin-bottom: 10px;
-    margin-right: 20px;
+    margin-top: -4px;
+}
+.cart__svg:hover {
+    cursor: pointer;
+    stroke: white;
 }
 /* navbar ends */
 
@@ -230,6 +232,9 @@
         margin-right: 0;
         font-weight: 600;
     }
+}
+.icons {
+    width: 100%;
 }
 .carousel {
     position: relative;
