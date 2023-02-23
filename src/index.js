@@ -1,3 +1,4 @@
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 let products = [
     {
         name: "Apple iPhone 13 Pro Max",
@@ -46,45 +47,88 @@ let products = [
     },
 ];
 
-let carousel = document.querySelector(".carousel");
-let slider = [];
-let index = 0;
-const parallax = () => {
-    let slide = document.createElement("div");
-    let img = document.createElement("img");
-    let content = document.createElement("content");
-    let h1 = document.createElement("h1");
-    let p = document.createElement("p");
-    let price = document.createElement("p");
-    let category = document.createElement("p");
-    let brand = document.createElement("p");
+const url = "https://fakestoreapi.com/products";
 
-    img.append(document.createTextNode(""));
-    h1.append(document.createTextNode(products[index].name));
-    p.append(document.createTextNode(products[index].description));
-    price.append(document.createTextNode(products[index].price));
-    category.append(document.createTextNode(products[index].category));
-    brand.append(document.createTextNode(products[index].brand));
+fetch(url)
+    .then((response) => {
+        return response.json();
+    })
+    .then((data) => {
+        console.log(data);
+        display(data);
+        display2(data);
+    })
+    .catch((err) => {
+        console.error(err);
+    });
+container1 = document.querySelector(".container1");
+function display(data) {
+    for (let i = 0; i < 6; i++) {
+        let prod = document.createElement("div");
+        let img = document.createElement("img");
+        let title = document.createElement("h4");
+        let ratings = document.createElement("p");
+        let price = document.createElement("p");
+        let btn = document.createElement("button");
+        let details = document.createElement("button");
 
-    content.append(h1, p, category, brand, price);
-    slide.append(content, img);
-    carousel.append(slide);
+        img.setAttribute("src", data[i].image);
+        title.innerText = data[i].title;
+        ratings.innerText = `Ratings : ${data[i].rating.rate}`;
+        price.innerText = `₹${data[i].price}`;
+        btn.innerText = "Add to cart";
+        btn.addEventListener("click", () => {
+            cart.push(data[i]);
+            Swal.fire(
+                "Yay !!!",
+                `${data[i].title}` + " was added to cart!",
+                "success"
+            );
+            localStorage.setItem("cart", JSON.stringify(cart));
+        });
+        details.innerText = "View details";
+        details.addEventListener("click", () => {
+            localStorage.setItem("details", JSON.stringify(data[i]));
+            location.href = "./product.html";
+        });
 
-    img.src = products[index].image;
-    index = (index + 1) % products.length;
+        prod.append(img, title, ratings, price, btn, details);
+        container1.append(prod);
+    }
+}
 
-    //setting element
-    slide.className = "slider";
-    content.className = "slider-content";
-    h1.className = "product-title";
-    p.className = "product.desc";
-    price.className = "product-price";
-    category.className = "product-category";
-    brand.className = "product-brand";
+container2 = document.querySelector(".container2");
+function display2(data) {
+    for (let i = 6; i < data.length; i++) {
+        let prod = document.createElement("div");
+        let img = document.createElement("img");
+        let title = document.createElement("h4");
+        let ratings = document.createElement("p");
+        let price = document.createElement("p");
+        let btn = document.createElement("button");
+        let details = document.createElement("button");
 
-    slider.push(slide);
-};
+        img.setAttribute("src", data[i].image);
+        title.innerText = data[i].title;
+        ratings.innerText = `Ratings : ${data[i].rating.rate}`;
+        price.innerText = `₹${data[i].price}`;
+        btn.innerText = "Add to cart";
+        btn.addEventListener("click", () => {
+            cart.push(data[i]);
+            Swal.fire(
+                "Yay !!!",
+                `${data[i].title}` + " was added to cart!",
+                "success"
+            );
+            localStorage.setItem("cart", JSON.stringify(cart));
+        });
+        details.innerText = "View details";
+        details.addEventListener("click", () => {
+            localStorage.setItem("details", JSON.stringify(data[i]));
+            location.href = "./product.html";
+        });
 
-setInterval(() => {
-    parallax();
-}, 3000);
+        prod.append(img, title, ratings, price, btn, details);
+        container2.append(prod);
+    }
+}
