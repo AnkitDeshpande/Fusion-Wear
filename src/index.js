@@ -45,6 +45,42 @@ let products = [
         category: "Sports",
         brand: "Nike",
     },
+    {
+        name: "Samsung Galaxy Z Fold 3",
+        description:
+            "A foldable smartphone that folds like a book and can be used as a tablet. Comes with a high-quality camera and 5G support.",
+        image: "https://cdn.dxomark.com/wp-content/uploads/medias/post-99814/Samsung-Z-Fold3-5G-featured-image-packshot-review.jpg",
+        price: "₹149,999",
+        category: "Electronics",
+        brand: "Samsung",
+    },
+    {
+        name: "Sony WH-1000XM4",
+        description:
+            "Wireless noise-cancelling headphones with an exceptional sound quality, a long battery life, and a comfortable fit.",
+        image: "https://dam.which.co.uk/SR17275-0607-00-front-615x461.jpg",
+        price: "₹24,990",
+        category: "Electronics",
+        brand: "Sony",
+    },
+    {
+        name: "Lululemon Align Pant",
+        description:
+            "Comfortable, high-waisted leggings made with buttery soft fabric that feels like a second skin. Ideal for yoga, Pilates, and other low-impact workouts.",
+        image: "https://people.com/thmb/iPEHe1VBRsI4GyGwLEtLRDr9GqU=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():focal(749x0:751x2):format(webp)/lululemon-align-high-rise-pant-pockets-black-8d761f203252476fb184bfe7e4c701d7.jpg",
+        price: "₹8,000",
+        category: "Clothing",
+        brand: "Lululemon",
+    },
+    {
+        name: "Tumi Alpha 3 Garment Bag",
+        description:
+            "A stylish and durable garment bag with a versatile design that allows you to pack your suits, dresses, and other formalwear with ease. Comes with multiple compartments and pockets for added convenience.",
+        image: "https://assets.ajio.com/medias/sys_master/root/h93/hc9/16326000345118/-473Wx593H-410161931-black-MODEL2.jpg",
+        price: "₹65,000",
+        category: "Luggage",
+        brand: "Tumi",
+    },
 ];
 
 const url = "https://fakestoreapi.com/products";
@@ -131,4 +167,62 @@ function display2(data) {
         prod.append(img, title, ratings, price, btn, details);
         container2.append(prod);
     }
+}
+
+const carousel = document.querySelector(".carousel");
+products.forEach((product) => {
+    const productDiv = document.createElement("div");
+    productDiv.classList.add("product");
+    productDiv.innerHTML = `
+        <img src="${product.image}" alt="${product.title}">
+        <h3>${product.name}</h3>
+        <p class="price">${product.price}</p>
+        <p class="description">${product.description}</p>
+        <div class="buttons">
+            <button class="add-to-cart">Add to cart</button>
+            <button class="view-details">View details</button>
+        </div>
+    `;
+    carousel.appendChild(productDiv);
+});
+
+// initialize carousel with infinite loop and automatic transition
+const productsLength = products.length;
+const productWidth = document.querySelector(".product").offsetWidth;
+const carouselWidth = productWidth * productsLength;
+const carouselWrapper = document.createElement("div");
+carouselWrapper.classList.add("carousel-wrapper");
+carouselWrapper.style.width = carouselWidth + "px";
+carouselWrapper.innerHTML = carousel.innerHTML;
+carousel.innerHTML = "";
+carousel.append(carouselWrapper);
+
+let currentPosition = 0;
+
+setInterval(() => {
+    currentPosition -= productWidth;
+    if (currentPosition < -carouselWidth + productWidth) {
+        currentPosition = 0;
+    }
+    carouselWrapper.style.transform = `translateX(${currentPosition}px)`;
+}, 5000);
+
+const addToCartButton = document.querySelectorAll(".add-to-cart");
+const viewDetailsButton = document.querySelectorAll(".view-details");
+
+console.log(addToCartButton);
+for (let i = 0; i < addToCartButton.length; i++) {
+    addToCartButton[i].addEventListener("click", () => {
+        cart.push(products[i]);
+        Swal.fire(
+            "Yay !!!",
+            `${products[i].name}` + " was added to cart!",
+            "success"
+        );
+        localStorage.setItem("cart", JSON.stringify(cart));
+    });
+    viewDetailsButton[i].addEventListener("click", () => {
+        localStorage.setItem("details", JSON.stringify(products[i]));
+        location.href = "./product.html";
+    });
 }
