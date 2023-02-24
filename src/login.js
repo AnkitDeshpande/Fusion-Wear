@@ -31,12 +31,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const userExists = users.some((user) => user.username === username);
         if (userExists) {
-            alert("Username is already taken. Please choose another one.");
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Username is already taken. Please choose another one.",
+            });
             return;
         }
 
         if (password !== confirmPassword) {
-            alert("Passwords do not match. Please try again.");
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Passwords do not match. Please try again.",
+            });
             return;
         }
 
@@ -85,10 +93,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 title: "Signed in successfully",
             });
             setInterval(() => {
-                location.href = "./index.html";
+                history.back();
             }, 3000);
         } else {
-            alert("Incorrect username or password. Please try again.");
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Incorrect username or password. Please try again.",
+            });
         }
     });
 });

@@ -164,3 +164,103 @@
         font-weight: 600;
     }
 }
+/* Cart and Checkout Page Styling */
+.rm {
+    position: relative;
+    background-color: #ec005a;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    padding: 5px;
+    margin-left: 20px;
+    box-sizing: border-box;
+    width: 120px;
+    height: 30px;
+    color: #fff;
+    border: none;
+    font-size: 15px;
+    transition: all 0.3s ease-in-out;
+}
+.inc,
+.dec {
+    position: relative;
+    background-color: #020106;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    padding: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+    box-sizing: border-box;
+    width: 50px;
+    height: 30px;
+    color: #fff;
+    border: none;
+    font-size: 15px;
+    transition: all 0.3s ease-in-out;
+}
+.rm:hover {
+    background-color: rgb(158, 41, 41);
+}
+#container {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.cart-container {
+    width: 70%;
+    padding: 20px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #ccc;
+}
+.cart-container > div {
+    margin: 20px;
+    padding: 20px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.bill {
+    width: 25%;
+    padding: 20px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #ccc;
+    background-color: #f5f5f5;
+    text-align: center;
+}
+
+.cart-container h3 {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.cart-container p {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.cart-container h4 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.cart-container img {
+    max-width: 100px;
+    max-height: 100px;
+    margin-right: 10px;
+}
+.bill h3 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.bill p {
+    font-size: 18px;
+    margin-bottom: 10px;
+}

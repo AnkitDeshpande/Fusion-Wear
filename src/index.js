@@ -5,7 +5,7 @@ let products = [
         description:
             "The ultimate iPhone for power users, with the best camera system, longest battery life, and largest display yet.",
         image: "https://www.reliancedigital.in/medias/Apple-MLL63HN-A-Smart-Phones-491997745-i-1-1200Wx1200H?context=bWFzdGVyfGltYWdlc3wyMjIyOTl8aW1hZ2UvanBlZ3xpbWFnZXMvaGIyL2gyNC85Nzc2MDQ1MzI2MzY2LmpwZ3xkYzQwYTgyMTJlOWVjM2U0OGZiMGE4ZmMyMTBhYWQ0YmFkNGYyMjI3ZTc4NGIxNmU1Mjc4Yzk5MDZjZjgwY2Mz",
-        price: `₹${149999.0}`,
+        price: 149999.0,
         category: "Electronics",
         brand: "Apple",
     },
@@ -14,7 +14,7 @@ let products = [
         description:
             "The flagship smartphone from Samsung, with a powerful processor, stunning camera, and 5G capabilities.",
         image: "https://freeshopdirecto.com/venezuela/127-large_default/galaxy-s21-ultra-5g.jpg",
-        price: `₹${111199.0}`,
+        price: 111199.0,
         category: "Electronics",
         brand: "Samsung",
     },
@@ -23,7 +23,7 @@ let products = [
         description:
             "The best noise-cancelling headphones in the market, with premium sound quality and a comfortable fit.",
         image: "https://assets.bose.com/content/dam/cloudassets/Bose_DAM/Web/consumer_electronics/global/products/headphones/qc35_ii/product_silo_images/qc35_ii_black_EC_hero.PNG/jcr:content/renditions/cq5dam.web.1280.1280.png",
-        price: `₹${1999.0}`,
+        price: 1999.0,
         category: "Electronics",
         brand: "Bose",
     },
@@ -32,7 +32,7 @@ let products = [
         description:
             "The latest fitness tracker from Fitbit, with advanced health monitoring features and a sleek design.",
         image: "https://www.fitbit.com/global/content/dam/fitbit/global/pdp/devices/charge-5/device-360/black/prod0.png",
-        price: `₹${179.95}`,
+        price: 179.95,
         category: "Fitness",
         brand: "Fitbit",
     },
@@ -41,7 +41,7 @@ let products = [
         description:
             "The iconic running shoe from Nike, with responsive cushioning and a breathable mesh upper.",
         image: "https://cdn.shopify.com/s/files/1/0614/3809/9651/products/194955811337_3_600x.jpg?v=1655987147",
-        price: `₹${119.99}`,
+        price: 119.99,
         category: "Sports",
         brand: "Nike",
     },
@@ -50,7 +50,7 @@ let products = [
         description:
             "A foldable smartphone that folds like a book and can be used as a tablet. Comes with a high-quality camera and 5G support.",
         image: "https://cdn.dxomark.com/wp-content/uploads/medias/post-99814/Samsung-Z-Fold3-5G-featured-image-packshot-review.jpg",
-        price: "₹149,999",
+        price: 149999,
         category: "Electronics",
         brand: "Samsung",
     },
@@ -59,7 +59,7 @@ let products = [
         description:
             "Wireless noise-cancelling headphones with an exceptional sound quality, a long battery life, and a comfortable fit.",
         image: "https://dam.which.co.uk/SR17275-0607-00-front-615x461.jpg",
-        price: "₹24,990",
+        price: 24990,
         category: "Electronics",
         brand: "Sony",
     },
@@ -68,7 +68,7 @@ let products = [
         description:
             "Comfortable, high-waisted leggings made with buttery soft fabric that feels like a second skin. Ideal for yoga, Pilates, and other low-impact workouts.",
         image: "https://people.com/thmb/iPEHe1VBRsI4GyGwLEtLRDr9GqU=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():focal(749x0:751x2):format(webp)/lululemon-align-high-rise-pant-pockets-black-8d761f203252476fb184bfe7e4c701d7.jpg",
-        price: "₹8,000",
+        price: 8000,
         category: "Clothing",
         brand: "Lululemon",
     },
@@ -77,7 +77,7 @@ let products = [
         description:
             "A stylish and durable garment bag with a versatile design that allows you to pack your suits, dresses, and other formalwear with ease. Comes with multiple compartments and pockets for added convenience.",
         image: "https://assets.ajio.com/medias/sys_master/root/h93/hc9/16326000345118/-473Wx593H-410161931-black-MODEL2.jpg",
-        price: "₹65,000",
+        price: 65000,
         category: "Luggage",
         brand: "Tumi",
     },
@@ -124,7 +124,7 @@ function display(data) {
                 });
                 return;
             } else {
-                cart.push(data[i]);
+                cart.push({ quantity: 1, ...data[i] });
                 Swal.fire(
                     "Yay !!!",
                     `${data[i].title}` + " was added to cart!",
@@ -169,7 +169,7 @@ function display2(data) {
                 });
                 return;
             } else {
-                cart.push(data[i]);
+                cart.push({ quantity: 1, ...data[i] });
                 Swal.fire(
                     "Yay !!!",
                     `${data[i].title}` + " was added to cart!",
@@ -241,7 +241,7 @@ for (let i = 0; i < addToCartButton.length; i++) {
             });
             return;
         }
-        cart.push(products[i]);
+        cart.push({ quantity: 1, ...products[i] });
         Swal.fire(
             "Yay !!!",
             `${products[i].name}` + " was added to cart!",
@@ -262,6 +262,7 @@ if (localStorage.getItem("logName") != null) {
     logout.innerText = "Logout";
     logout.addEventListener("click", () => {
         localStorage.removeItem("logName");
+        localStorage.removeItem("cart");
         location.reload();
     });
 }
