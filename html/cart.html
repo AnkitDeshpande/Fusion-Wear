@@ -87,7 +87,7 @@
                                     /></a>
                                 </li>
                                 <li>
-                                    <a href="#"
+                                    <a href="#" id="profile"
                                         ><span
                                             class="glyphicon glyphicon-user"></span>
                                         Profile</a
@@ -98,6 +98,7 @@
                                         href="#"
                                         class="dropdown-toggle"
                                         data-toggle="dropdown"
+                                        id="logout"
                                         ><span
                                             class="glyphicon glyphicon-log-in"></span>
                                         Login / Sign Up
@@ -123,8 +124,16 @@
 
         <!-- display cart items -->
         <div id="container">
-            <div class="items"></div>
-            <div class="bill"></div>
+            <div class="cart-container">
+                <!-- apeend data here -->
+            </div>
+            <div class="bill">
+                <h3>Order Summary</h3>
+                <hr />
+                <p>Total items: <span id="total-items"></span></p>
+                <p>Total cost: <span id="total-cost"></span></p>
+                <button id="checkout-btn">Checkout</button>
+            </div>
         </div>
         <hr />
         <!-- display cart items -->

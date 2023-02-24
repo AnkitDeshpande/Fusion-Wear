@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>checkout page</title>
+        <link rel="stylesheet" href="../css/checkout.css" />
+        <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    </head>
+    <body>
+        <hr />
+        <div class="wrapper">
+            <div class="container">
+                <form action="submit">
+                    <h1>
+                        <i class="fas fa-shipping-fast"></i>
+                        Shipping Details
+                    </h1>
+                    <div class="name">
+                        <div>
+                            <label for="f-name">First</label>
+                            <input type="text" name="f-name" required />
+                        </div>
+                        <div>
+                            <label for="l-name">Last</label>
+                            <input type="text" name="l-name" required />
+                        </div>
+                    </div>
+                    <div class="street">
+                        <label for="name">Street</label>
+                        <input type="text" name="address" required />
+                    </div>
+                    <div class="address-info">
+                        <div>
+                            <label for="city">City</label>
+                            <input type="text" name="city" required />
+                        </div>
+                        <div>
+                            <label for="state">State</label>
+                            <input type="text" name="state" required />
+                        </div>
+                        <div>
+                            <label for="zip">Zip</label>
+                            <input type="text" name="zip" required />
+                        </div>
+                    </div>
+                    <h1>
+                        <i class="far fa-credit-card"></i> Payment Information
+                    </h1>
+                    <div class="cc-num">
+                        <label for="card-num">Credit Card No.</label>
+                        <input type="text" name="card-num" required />
+                    </div>
+                    <div class="cc-info">
+                        <div>
+                            <label for="card-num">Exp</label>
+                            <input type="text" name="expire" required />
+                        </div>
+                        <div>
+                            <label for="card-num">CCV</label>
+                            <input type="text" name="security" required />
+                        </div>
+                    </div>
+                    <div class="btns">
+                        <button type="submit" id="purchase">Purchase</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../src/checkout.js"></script>
+</html>
