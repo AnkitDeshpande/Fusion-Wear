@@ -85,15 +85,14 @@ let products = [
 
 const url = "https://fakestoreapi.com/products";
 let logName = JSON.parse(localStorage.getItem("logName"));
-
+global = [];
 fetch(url)
-    .then((response) => {
-        return response.json();
-    })
+    .then((response) => response.json())
     .then((data) => {
-        console.log(data);
-        display(data);
-        display2(data);
+        global = data;
+        console.log(global);
+        display(global);
+        display2(global);
     })
     .catch((err) => {
         console.error(err);
@@ -101,6 +100,7 @@ fetch(url)
 
 container1 = document.querySelector(".container1");
 function display(data) {
+    container1.innerHTML = "";
     for (let i = 0; i < 6; i++) {
         let prod = document.createElement("div");
         let img = document.createElement("img");
@@ -110,10 +110,10 @@ function display(data) {
         let btn = document.createElement("button");
         let details = document.createElement("button");
 
-        img.setAttribute("src", data[i].image);
-        title.innerText = data[i].title;
-        ratings.innerText = `Ratings : ${data[i].rating.rate}`;
-        price.innerText = `₹${data[i].price}`;
+        img.setAttribute("src", global[i].image);
+        title.innerText = global[i].title;
+        ratings.innerText = `Ratings : ${global[i].rating.rate}`;
+        price.innerText = `₹${global[i].price}`;
         btn.innerText = "Add to cart";
         btn.addEventListener("click", () => {
             if (!("logName" in localStorage)) {
@@ -124,7 +124,7 @@ function display(data) {
                 });
                 return;
             } else {
-                cart.push({ quantity: 1, ...data[i] });
+                cart.push({ quantity: 1, ...global[i] });
                 Swal.fire(
                     "Yay !!!",
                     `${data[i].title}` + " was added to cart!",
@@ -146,6 +146,7 @@ function display(data) {
 
 container2 = document.querySelector(".container2");
 function display2(data) {
+    container2.innerHTML = "";
     for (let i = 6; i < data.length; i++) {
         let prod = document.createElement("div");
         let img = document.createElement("img");
@@ -230,7 +231,6 @@ setInterval(() => {
 const addToCartButton = document.querySelectorAll(".add-to-cart");
 const viewDetailsButton = document.querySelectorAll(".view-details");
 
-console.log(addToCartButton);
 for (let i = 0; i < addToCartButton.length; i++) {
     addToCartButton[i].addEventListener("click", () => {
         if (!("logName" in localStorage)) {
@@ -266,3 +266,14 @@ if (localStorage.getItem("logName") != null) {
         location.reload();
     });
 }
+
+let filter = document.getElementById("filter");
+filter.addEventListener("change", () => {
+    if (filter.value == "") {
+        display(global);
+    } else {
+        let filtered = global.filter((el) => el.category == filter.value);
+        console.log(filtered);
+        display2(filtered);
+    }
+});
