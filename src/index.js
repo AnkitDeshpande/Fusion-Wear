@@ -84,6 +84,7 @@ let products = [
 ];
 
 const url = "https://fakestoreapi.com/products";
+let logName = JSON.parse(localStorage.getItem("logName"));
 
 fetch(url)
     .then((response) => {
@@ -97,6 +98,7 @@ fetch(url)
     .catch((err) => {
         console.error(err);
     });
+
 container1 = document.querySelector(".container1");
 function display(data) {
     for (let i = 0; i < 6; i++) {
@@ -114,13 +116,22 @@ function display(data) {
         price.innerText = `₹${data[i].price}`;
         btn.innerText = "Add to cart";
         btn.addEventListener("click", () => {
-            cart.push(data[i]);
-            Swal.fire(
-                "Yay !!!",
-                `${data[i].title}` + " was added to cart!",
-                "success"
-            );
-            localStorage.setItem("cart", JSON.stringify(cart));
+            if (!("logName" in localStorage)) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "You have to login before adding Items to cart!",
+                });
+                return;
+            } else {
+                cart.push(data[i]);
+                Swal.fire(
+                    "Yay !!!",
+                    `${data[i].title}` + " was added to cart!",
+                    "success"
+                );
+                localStorage.setItem("cart", JSON.stringify(cart));
+            }
         });
         details.innerText = "View details";
         details.addEventListener("click", () => {
@@ -150,13 +161,22 @@ function display2(data) {
         price.innerText = `₹${data[i].price}`;
         btn.innerText = "Add to cart";
         btn.addEventListener("click", () => {
-            cart.push(data[i]);
-            Swal.fire(
-                "Yay !!!",
-                `${data[i].title}` + " was added to cart!",
-                "success"
-            );
-            localStorage.setItem("cart", JSON.stringify(cart));
+            if (!("logName" in localStorage)) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "You have to login before adding Items to cart!",
+                });
+                return;
+            } else {
+                cart.push(data[i]);
+                Swal.fire(
+                    "Yay !!!",
+                    `${data[i].title}` + " was added to cart!",
+                    "success"
+                );
+                localStorage.setItem("cart", JSON.stringify(cart));
+            }
         });
         details.innerText = "View details";
         details.addEventListener("click", () => {
@@ -213,6 +233,14 @@ const viewDetailsButton = document.querySelectorAll(".view-details");
 console.log(addToCartButton);
 for (let i = 0; i < addToCartButton.length; i++) {
     addToCartButton[i].addEventListener("click", () => {
+        if (!("logName" in localStorage)) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "You have to login before adding Items to cart!",
+            });
+            return;
+        }
         cart.push(products[i]);
         Swal.fire(
             "Yay !!!",
@@ -224,5 +252,16 @@ for (let i = 0; i < addToCartButton.length; i++) {
     viewDetailsButton[i].addEventListener("click", () => {
         localStorage.setItem("details", JSON.stringify(products[i]));
         location.href = "./product.html";
+    });
+}
+
+if (localStorage.getItem("logName") != null) {
+    let profile = document.getElementById("profile");
+    let logout = document.getElementById("logout");
+    profile.innerText = logName.username;
+    logout.innerText = "Logout";
+    logout.addEventListener("click", () => {
+        localStorage.removeItem("logName");
+        location.reload();
     });
 }

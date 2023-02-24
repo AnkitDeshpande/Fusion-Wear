@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Login</title>
         <link rel="stylesheet" href="../css/login.css" />
+        <!-- <link rel="stylesheet" href="sweetalert2.min.css" /> -->
     </head>
     <body>
         <div class="container">
@@ -18,7 +19,8 @@
                         type="text"
                         class="form__input"
                         autofocus
-                        placeholder="username or email" />
+                        placeholder="username or email"
+                        id="loginUsername" />
                     <!--Code below for error message for the username input-->
                     <div class="form__input-error-message"></div>
                 </div>
@@ -27,7 +29,8 @@
                         type="password"
                         class="form__input"
                         autofocus
-                        placeholder="password" />
+                        placeholder="password"
+                        id="loginPassword" />
                     <!--Code below for error message for the username input-->
                     <div class="form__input-error-message"></div>
                 </div>
@@ -53,7 +56,8 @@
                         id="signupUsername"
                         class="form__input"
                         autofocus
-                        placeholder="username" />
+                        placeholder="username"
+                        id="signupUsername" />
                     <!--Code below for error message for the username input-->
                     <div class="form__input-error-message"></div>
                 </div>
@@ -62,7 +66,8 @@
                         type="text"
                         class="form__input"
                         autofocus
-                        placeholder="Email" />
+                        placeholder="Email"
+                        id="signupEmail" />
                     <!--Code below for error message for the username input-->
                     <div class="form__input-error-message"></div>
                 </div>
@@ -71,7 +76,8 @@
                         type="password"
                         class="form__input"
                         autofocus
-                        placeholder="password" />
+                        placeholder="password"
+                        id="signupPassword" />
                     <!--Code below for error message for the username input-->
                     <div class="form__input-error-message"></div>
                 </div>
@@ -80,7 +86,8 @@
                         type="password"
                         class="form__input"
                         autofocus
-                        placeholder="Confirm password" />
+                        placeholder="Confirm password"
+                        id="signupConfirmPassword" />
                     <!--Code below for error message for the username input-->
                     <div class="form__input-error-message"></div>
                 </div>
@@ -94,4 +101,5 @@
         </div>
     </body>
     <script src="../src/login.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </html>
