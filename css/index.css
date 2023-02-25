@@ -31,17 +31,9 @@
     margin: auto;
     gap: 25px;
     padding: 50px;
-    grid-template-columns: repeat(3, 1fr);
-}
-.container2 {
-    display: grid;
-    margin: auto;
-    gap: 25px;
-    padding: 50px;
     grid-template-columns: repeat(4, 1fr);
 }
-.container1 > div,
-.container2 > div {
+.container1 > div {
     font-size: 15px;
     padding: 15px;
     display: flex;
@@ -51,8 +43,7 @@
     line-height: 20px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
-.container1 h2,
-.container2 h2 {
+.container1 h2 {
     font-size: 25px;
 }
 .container1 img {
@@ -61,13 +52,8 @@
     margin-bottom: 15px;
     /* border: 1px solid red; */
 }
-.container2 img {
-    width: 100%;
-    height: 200px;
-}
 
-.container1 button,
-.container2 button {
+.container1 button {
     font-size: 17px;
     padding: 0.5em 2em;
     border: transparent;
@@ -78,8 +64,7 @@
     margin-bottom: 10px;
 }
 
-.container1 button:hover,
-.container2 button:hover {
+.container1 button:hover {
     background: rgb(2, 0, 36);
     background: linear-gradient(
         90deg,
@@ -219,8 +204,14 @@
     .site-footer [class^="col-"] {
         margin-bottom: 30px;
     }
+    .container1 {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 @media (max-width: 767px) {
+    .container1 {
+        grid-template-columns: repeat(2, 1fr);
+    }
     .site-footer {
         padding-bottom: 0;
     }
@@ -230,6 +221,9 @@
     }
 }
 @media (max-width: 767px) {
+    .container1 {
+        grid-template-columns: repeat(1, 1fr);
+    }
     .social-icons li.title {
         display: block;
         margin-right: 0;
@@ -258,8 +252,8 @@
     justify-content: space-between;
     flex-shrink: 0;
     margin-right: 20px;
-    width: 17%;
-    height: 500px;
+    width: 15%;
+    height: 450px;
     text-align: center;
     padding: 20px;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
@@ -267,7 +261,7 @@
 
 .product img {
     max-width: 100%;
-    height: 200px;
+    height: 150px;
     margin-bottom: 10px;
 }
 
@@ -295,7 +289,7 @@
 .product .buttons button {
     padding: 10px;
     margin-right: 10px;
-    font-size: 16px;
+    font-size: 12px;
     font-weight: bold;
     border: none;
     border-radius: 5px;
@@ -316,4 +310,14 @@ hr {
     margin: 40px 0;
     border: none;
     border-top: 2px solid #ccc;
+}
+#filter {
+    display: block;
+    margin: auto;
+    width: 200px;
+    height: 30px;
+    border-radius: 10px;
+    background-color: #ea4c89;
+    color: azure;
+    border: none;
 }

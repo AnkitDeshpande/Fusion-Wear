@@ -92,7 +92,6 @@ fetch(url)
         global = data;
         console.log(global);
         display(global);
-        display2(global);
     })
     .catch((err) => {
         console.error(err);
@@ -100,54 +99,8 @@ fetch(url)
 
 container1 = document.querySelector(".container1");
 function display(data) {
-    container1.innerHTML = "";
-    for (let i = 0; i < 6; i++) {
-        let prod = document.createElement("div");
-        let img = document.createElement("img");
-        let title = document.createElement("h4");
-        let ratings = document.createElement("p");
-        let price = document.createElement("p");
-        let btn = document.createElement("button");
-        let details = document.createElement("button");
-
-        img.setAttribute("src", global[i].image);
-        title.innerText = global[i].title;
-        ratings.innerText = `Ratings : ${global[i].rating.rate}`;
-        price.innerText = `₹${global[i].price}`;
-        btn.innerText = "Add to cart";
-        btn.addEventListener("click", () => {
-            if (!("logName" in localStorage)) {
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: "You have to login before adding Items to cart!",
-                });
-                return;
-            } else {
-                cart.push({ quantity: 1, ...global[i] });
-                Swal.fire(
-                    "Yay !!!",
-                    `${data[i].title}` + " was added to cart!",
-                    "success"
-                );
-                localStorage.setItem("cart", JSON.stringify(cart));
-            }
-        });
-        details.innerText = "View details";
-        details.addEventListener("click", () => {
-            localStorage.setItem("details", JSON.stringify(data[i]));
-            location.href = "./product.html";
-        });
-
-        prod.append(img, title, ratings, price, btn, details);
-        container1.append(prod);
-    }
-}
-
-container2 = document.querySelector(".container2");
-function display2(data) {
-    container2.innerHTML = "";
-    for (let i = 6; i < data.length; i++) {
+    container1.innerHTML = null;
+    for (let i = 0; i < data.length; i++) {
         let prod = document.createElement("div");
         let img = document.createElement("img");
         let title = document.createElement("h4");
@@ -186,7 +139,7 @@ function display2(data) {
         });
 
         prod.append(img, title, ratings, price, btn, details);
-        container2.append(prod);
+        container1.append(prod);
     }
 }
 
@@ -197,7 +150,7 @@ products.forEach((product) => {
     productDiv.innerHTML = `
         <img src="${product.image}" alt="${product.title}">
         <h3>${product.name}</h3>
-        <p class="price">${product.price}</p>
+        <p class="price">₹${product.price}</p>
         <p class="description">${product.description}</p>
         <div class="buttons">
             <button class="add-to-cart">Add to cart</button>
@@ -274,6 +227,21 @@ filter.addEventListener("change", () => {
     } else {
         let filtered = global.filter((el) => el.category == filter.value);
         console.log(filtered);
-        display2(filtered);
+        display(filtered);
     }
+});
+
+let searchbtn = document.getElementById("searchbtn");
+let searchinput = document.getElementById("search");
+searchbtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    let searchParams = searchinput.value;
+    let searched = global.filter((element) => {
+        if (element.title.toUpperCase().includes(searchParams.toUpperCase())) {
+            return true;
+        } else {
+            return false;
+        }
+    });
+    display(searched);
 });
