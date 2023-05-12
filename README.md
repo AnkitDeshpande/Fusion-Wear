@@ -10,7 +10,6 @@ A web browser
 
 Installation
 Clone the repository to your local machine.
-git clone https://github.com/your-username/ecommerce-website.git
 
 Open the project folder in your code editor.
 Open the index.html file in your web browser to view the website.
