@@ -1,4 +1,4 @@
-Ecommerce Website
+#Fusion-Wear
 This is an individual project for an ecommerce website, built using HTML, CSS, and JavaScript.
 
 The website allows users to browse products, add items to their cart, and checkout. It also includes an admin dashboard for managing products, orders, and customers.
